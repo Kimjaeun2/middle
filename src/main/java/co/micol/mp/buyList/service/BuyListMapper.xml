@@ -4,7 +4,7 @@
 
 <select id = "productBuyList" resultType="co.micol.mp.buyList.service.BuyListVO">
 SELECT *
-FROM PRODUCTBUYTABLE
+FROM PRODUCTBUYLIST
 WHERE MEMBER_id = #{memberId}
 ORDER BY BUY_DATE
 </select>
@@ -17,7 +17,7 @@ ORDER BY BUY_DATE
 </select>
 
 <insert id="buyListInsert" parameterType="co.micol.mp.buyList.service.BuyListVO" >
-insert into PRODUCTBUYTABLE
+insert into PRODUCTBUYLIST
 values(#{memberId },
 	   #{productId },
 	   #{productName },

@@ -101,7 +101,9 @@ flex-wrap:wrap;
 								<span>입찰건수</span> ${a.auctionCount }
 								<p>
 									<span>
-									 종료일: <span>${a.auctionLastDate }</span>
+									 종료일: <span class="formattedEndDate">
+									 			<input type="hidden" class="auctionLastDate" value="${a.auctionLastDate}" />
+									 		</span>
 									</span> 
 									<br>
 									<span> 
@@ -154,8 +156,28 @@ function auctionChois(id){
 	frm.submit(); 
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+	  // Hidden Input 필드들을 가져옵니다.
+	  const auctionLastDateElements = document.querySelectorAll('.auctionLastDate'); // 여러 Hidden Input 필드들의 클래스를 선택합니다.
+
+	  // Hidden Input 필드들을 순회하면서 처리합니다.
+	  auctionLastDateElements.forEach(function(auctionLastDateElement) {
+	    const endDate = new Date(auctionLastDateElement.value); // Date 타입으로 가져옴
+
+	    // 변환된 값을 원하는 형식으로 표시합니다.
+	    const formattedEndDateElement = auctionLastDateElement.closest('.product-text').querySelector('.formattedEndDate'); // closest()로 가장 가까운 부모 엘리먼트를 찾고 그 하위 엘리먼트 선택
+	    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+	    const formattedEndDate = new Intl.DateTimeFormat('ko-KR', options).format(endDate);
+
+	    formattedEndDateElement.textContent = formattedEndDate;
+	  });
+	});
+	
+	
+
+
+
+
 </script>
-
-
 </body>
 </html>

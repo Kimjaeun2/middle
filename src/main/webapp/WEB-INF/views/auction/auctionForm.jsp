@@ -50,10 +50,12 @@
 	                           <h5>즉시 구매:<fmt:formatNumber value="${auction.auctionMax}" pattern="#,###원" /></h5>   
 	                           <p>${auction.auctionText }</p>   
                                <div class="sec7-text-box">
-								  <p class="runTimeCon">마감 날짜 : ${auction.auctionLastDate }</p>
+								  <p class="runTimeCon">마감 날짜 : <span id="formattedEndDate"></span></p>
 								  <hr/>
 								  <p class="time-title">경매 마감까지 남은 시간</p>
 								  <div class="time">
+								    <span id="d-day-day">00</span>
+								    <span class="col">일 </span>
 								    <span id="d-day-hour">00</span>
 								    <span class="col">:</span>
 								    <span id="d-day-min">00</span>
@@ -127,7 +129,6 @@ function auciotnPriceInsert(){
 			type:"POST",
 			data:queryString,
 			success:function(){			
-					/* alert("성공");  */
 					$("#auctionPrice").val("").focus();
 					$("#auctionlist").empty();				
 					auctionPriceSelect();					
@@ -176,36 +177,53 @@ auctionPriceSelect();
  if("${auth }" == "A"){
  	auctionFrm.action="auctionForm.do";
  }else{
-	function remaindTime() {
-		var now = new Date(); //현재시간을 구한다. 
-		var open = new Date("${auction.auctionLastDate}");
-		var nt = now.getTime(); // 현재의 시간만 가져온다
-		var ot = open.getTime(); // 오픈시간만 가져온다
-	  	
-	    if(nt<ot){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.   
-			sec = parseInt(ot - nt) / 1000;
-			hour = parseInt(sec/60/60);
-			sec = (sec - (hour*60*60));
-			min = parseInt(sec/60);
-			sec = parseInt(sec-(min*60));
-	  
-	    if(hour<10){hour="0"+hour;}
-	    if(min<10){min="0"+min;}
-	    if(sec<10){sec="0"+sec;}
-			$("#d-day-hour").html(hour);
-			$("#d-day-min").html(min);
-			$("#d-day-sec").html(sec);
-	    }else{ //현재시간이 종료시간보다 크면
-		    $("#d-day-hour").html('00');
-		    $("#d-day-min").html('00');
-		    $("#d-day-sec").html('00'); 	   
-			
-		    auctionFrm.action="auctionTimeOut.do";    
-			auctionFrm.submit();
-	   }
-	}
+	 function remaindTime() {
+		    var now = new Date(); // 현재시간을 구한다.
+		    var open = new Date("${auction.auctionLastDate}");
+		    var nt = now.getTime(); // 현재의 시간만 가져온다
+		    var ot = open.getTime(); // 오픈시간만 가져온다
+
+		    if (nt < ot) { // 현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.
+		        sec = parseInt(ot - nt) / 1000;
+		        var days = parseInt(sec / (60 * 60 * 24)); // 초를 일로 변환
+		        sec = sec % (60 * 60 * 24); // 일로 나눈 나머지 초 값
+		        var hour = parseInt(sec / 3600);
+		        sec = sec % 3600;
+		        var min = parseInt(sec / 60);
+		        sec = parseInt(sec % 60);
+
+		        if (hour < 10) { hour = "0" + hour; }
+		        if (min < 10) { min = "0" + min; }
+		        if (sec < 10) { sec = "0" + sec; }
+
+		        $("#d-day-day").html(days); // 일(day) 표시
+		        $("#d-day-hour").html(hour);
+		        $("#d-day-min").html(min);
+		        $("#d-day-sec").html(sec);
+		    } else { // 현재시간이 종료시간보다 크면
+		        $("#d-day-day").html('00');
+		        $("#d-day-hour").html('00');
+		        $("#d-day-min").html('00');
+		        $("#d-day-sec").html('00');
+
+		        auctionFrm.action = "auctionTimeOut.do";
+		        auctionFrm.submit();
+		    }
+		}
+
 	setInterval(remaindTime,1000);
 }
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+	const endDate = new Date("${auction.auctionLastDate}"); // Date 타입으로 가져옴
+
+	// 변환된 값을 원하는 형식으로 표시합니다.
+	const formattedEndDateElement = document.getElementById('formattedEndDate');
+	const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+	const formattedEndDate = new Intl.DateTimeFormat('ko-KR', options).format(endDate);
+	console.log(formattedEndDate)
+	formattedEndDateElement.textContent = formattedEndDate;
+	});
 </script>
 </body>
 
