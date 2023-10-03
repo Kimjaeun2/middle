@@ -78,13 +78,13 @@ input#pfile.form-control{
 							method="post">
 							<fieldset>
 								<!-- 제품아이디 -->
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<span class="col-md-1 col-md-offset-2 text-center"></span>
 									<div class="col-md-8">
 										<input id="auctionId" name="auctionId" type="text"
 											placeholder="ID" class="form-control" required="required">
 									</div>
-								</div>
+								</div> -->
 								<!-- 제품이름 -->
 								<div class="form-group">
 									<span class="col-md-1 col-md-offset-2 text-center"></span>

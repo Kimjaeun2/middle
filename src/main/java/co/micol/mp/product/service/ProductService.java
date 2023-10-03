@@ -22,6 +22,7 @@ public interface ProductService {
 	List<ProductVO> productAllSerch(ProductVO vo);
 	
 	int productUpdate(ProductVO vo);
+	ProductVO productCategory(ProductVO vo);
 	
 
 }

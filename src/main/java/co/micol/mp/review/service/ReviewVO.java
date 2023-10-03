@@ -18,7 +18,7 @@ public class ReviewVO {
 	private String reviewSubject;
 	private String memberName;
 
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-mm-dd")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date reviewDate;
 }
 //REVIEW_NO      NOT NULL NUMBER        

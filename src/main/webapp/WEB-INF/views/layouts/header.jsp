@@ -64,10 +64,10 @@
 							<li><a class="active" href="productRecentList.do">Home</a></li>
 							<li><a href="productList.do">Shop</a>
 								<ul class="sub-menu">
-									<li><a href="productCateList.do?productCategory=상의" >상의</a></li>
-									<li><a href="productCateList.do?productCategory=하의">하의</a></li>
-									<li><a href="productCateList.do?productCategory=아우터">아우터</a></li>
-									<li><a href="productCateList.do?productCategory=신발">신발</a></li>
+									<li><a href="productCateList.do?productCategory=top">top</a></li>
+									<li><a href="productCateList.do?productCategory=bottom">bottom</a></li>
+									<li><a href="productCateList.do?productCategory=outer">outer</a></li>
+									<li><a href="productCateList.do?productCategory=shoes">shoes</a></li>
 								
 									<c:if test="${auth eq 'A'}">
 										<li><a href="productInsertForm.do">Product Insert</a></li>
@@ -76,8 +76,9 @@
 							<li><a href="auctionList.do">Auction</a>
 								<ul class="sub-menu">
 									<li><a href="auctionList.do">AuctionList</a></li>
-									<li><a href="auctionForm.do">경매임시상세보기</a></li>
-									<li><a href="auctionInsertForm.do">경매임시입력폼</a></li>
+									<c:if test="${not empty id }">
+										<li><a href="auctionInsertForm.do">AuctionInsert</a></li>
+									</c:if>
 								</ul></li>
 							<li><a href="noticeList.do">Notice</a></li>
 						</ul>

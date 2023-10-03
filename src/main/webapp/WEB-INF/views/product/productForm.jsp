@@ -91,13 +91,7 @@ textarea {
                         <h2>${product.productName }</h2>
                         <div class="pc-meta">
                             <h5><fmt:formatNumber value="${product.productPrice}" pattern="#,###원" /></h5>      
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
+                           
                         </div>
                         <p>${product.productText }</p>
                         <ul class="tags">
@@ -187,51 +181,53 @@ function reviewInsert(){
 		error: function(request, status, error){
 			alert("code:" + request.status+"\n"+"message: " +request.responseText + "\n"+"error: " + error);
 		}
-	});
-	
+	});	
 }
 reviewList();
- function reviewList(){
+function reviewList(){
 	let url = "ajaxReivewList.do"
 	fetch(url+"?productId="+"${product.productId }")
 		.then(response => response.json())
 		.then(json => HtmlConvert(json));
 } 
  
- function HtmlConvert(datas){
-	 const container = document.createElement('table');//<table>태그 생성
-	 container.innerHTML = datas.map(data => createHTMLString(data)).join("");
+function HtmlConvert(datas){
+	const container = document.createElement('table');//<table>태그 생성
+	container.innerHTML = datas.map(data => createHTMLString(data)).join("");
 	
-	 document.querySelector('#reviewList').appendChild(container);//화면에 추가
- }
- function createHTMLString(data){
+	document.querySelector('#reviewList').appendChild(container);//화면에 추가
+}
+function createHTMLString(data){
 	let str="<tr>";
 		str+="<td>"+ data.memberName+"</td>";
 		str+="<td>"+ data.reviewSubject+"</td>";
 		str+="<td>"+ data.reviewDate+"</td>";
+	if("${id}" == data.memberId ){
 		str+="<td class='rDelete'><button type='button' onclick='rDeleteBtn("+data.reviewNo+")'>"+"삭제"+"</button></td></tr>"; //삭제버튼
+	}else{
+		str+="<td></td></tr>"
+	}
 	return str;
-	
- }
-	
-	function rDeleteBtn(reviewNo) {
-		  location.href = "deleteReview.do?reviewNo=" + reviewNo + "&productId=" + "${product.productId }";
-		}
 
- function clickBtn(str){
-	 let frm = document.getElementById("frm");
-	 if(str=='D'){
-		 if(confirm("정말 삭제하시겠습니까?")==true){
-			 frm.action="productDelete.do" 
-		 }
-		 else{
-			 return;
-		 }
-	 }else{
-		 frm.action="productEdit.do"
-	 }
-	 frm.submit();
- }
+}
+	
+function rDeleteBtn(reviewNo) {
+	location.href = "deleteReview.do?reviewNo=" + reviewNo + "&productId=" + "${product.productId }";
+}
+
+function clickBtn(str){
+	let frm = document.getElementById("frm");
+	if(str=='D'){
+ 		if(confirm("정말 삭제하시겠습니까?")==true){
+			frm.action="productDelete.do" 
+	 	}else{
+		 	return;
+	 	}
+	}else{
+	 	frm.action="productEdit.do"
+	}
+	frm.submit();
+}
 
 </script>
 

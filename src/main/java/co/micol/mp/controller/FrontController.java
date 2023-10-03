@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.mp.auction.command.AjaxAuctionSelect;
 import co.micol.mp.auction.command.AuctionBuyInsert;
+import co.micol.mp.auction.command.AuctionDelete;
 import co.micol.mp.auction.command.AuctionForm;
 import co.micol.mp.auction.command.AuctionInsert;
 import co.micol.mp.auction.command.AuctionInsertForm;
@@ -170,6 +171,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxAuctionSelect.do", new AjaxAuctionSelect());
 		map.put("/auctionBuyInsert.do", new AuctionBuyInsert());
 		map.put("/auctionTimeOut.do", new AuctionTimeOut());
+		map.put("/auctionDelete.do", new AuctionDelete());
 
 		//구매내역 호출 폼
 		map.put("/buyList.do", new BuyList()); //구매내역 조회

@@ -74,44 +74,44 @@
 <body>
 
 
-	<!-- Page Add Section Begin -->
-	<section class="page-add">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="page-breadcrumb">
-						<h2>
-							Dresses<span>.</span>
-						</h2>
-						<a href="main.do">Home</a> <a href="productList.do">Dresses</a>
-						<!--                         <a class="active" href="#">Night Dresses</a> -->
-					</div>
+<!-- Page Add Section Begin -->
+<section class="page-add">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="page-breadcrumb">
+					<h2>
+						Dresses<span>.</span>
+					</h2>
+					<a href="main.do">Home</a> <a href="productList.do">Dresses</a>
+					<!--                         <a class="active" href="#">Night Dresses</a> -->
 				</div>
 			</div>
 		</div>
-	</section>
-	
-	<!-- board seach area -->
-		<div id="board-search">
-			<div class="container">
-				<div class="search-window">
-					<form action="">
-						<div class="search-wrap">
-							<form>
-								<input id="search" type="search" name="search" placeholder="상품 검색">
-                <c:if test="${not empty vo.productCategory }">
-		             <input type="hidden" id="productCategory" name="productCategory" value="${vo.productCategory}">
-								<button type="submit" id="sBtn" class="btn btn-dark" formaction="productCateSerch.do">검색</button>
-                    </c:if>
-                  <c:if test="${empty vo.productCategory }">
-		            <button type="submit" id="sBtn" class="btn btn-dark" formaction="productAllSearch.do">검색</button>
-                </c:if>
-							</form>
-						</div>
+	</div>
+</section>
+
+<!-- board seach area -->
+<div id="board-search">
+	<div class="container">
+		<div class="search-window">
+			<form action="">
+				<div class="search-wrap">
+					<form>
+						<input id="search" type="search" name="productSearch" id = "productSearch" placeholder="상품 검색">
+	               		<c:if test="${not empty vo.productCategory }">
+			             	<input type="hidden" id="productCategory" name="productCategory" value="${vo.productCategory}">
+							<button type="submit" id="sBtn" class="btn btn-dark" formaction="productCateSerch.do">검색</button>
+	                    </c:if>
+		                 <c:if test="${empty vo.productCategory }">
+				            	<button type="submit" id="sBtn" class="btn btn-dark" formaction="productAllSearch.do">검색</button>
+		                </c:if>
 					</form>
 				</div>
-			</div>
+			</form>
 		</div>
+	</div>
+</div>
 
 	<!-- Page Add Section End -->
 

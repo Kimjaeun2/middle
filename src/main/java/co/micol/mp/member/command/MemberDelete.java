@@ -22,7 +22,7 @@ public class MemberDelete implements Command {
 		
 		ms.memberDelete(vo);
 		
-		return "main/main";
+		return "productRecentList.do";
 	}
 
 }

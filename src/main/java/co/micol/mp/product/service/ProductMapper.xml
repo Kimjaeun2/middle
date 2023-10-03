@@ -40,11 +40,11 @@
 	</select>
 	
 
-	<insert id = "productInsert">>
-<selectKey keyProperty="productId" resultType="String" order="BEFORE">
-		SELECT 'p00' || PRODUCT_SEQ.NEXTVAL FROM PRODUCT
-	</selectKey>
-	
+	<insert id = "productInsert"
+				parameterType="co.micol.mp.product.service.ProductVO">
+	<selectKey keyProperty="productId" resultType="String" order="BEFORE">
+		SELECT 'p00' || PRODUCT_SEQ.NEXTVAL FROM dual
+	</selectKey>	
 		INSERT INTO PRODUCT 
 		VALUES( 
 				#{productId},

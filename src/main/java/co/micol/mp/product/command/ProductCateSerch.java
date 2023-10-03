@@ -21,6 +21,9 @@ public class ProductCateSerch implements Command {
 		vo.setProductCategory(productCategory);
 		vo.setProductSearch(productSearch);
 		
+		System.out.println(request.getParameter("productCategory"));
+		System.out.println(request.getParameter("productSearch"));
+		
 		List<ProductVO> products = ps.productSerch(vo);
 		
 		request.setAttribute("products", products);

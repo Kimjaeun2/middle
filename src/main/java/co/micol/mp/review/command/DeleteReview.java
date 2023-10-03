@@ -23,7 +23,8 @@ public class DeleteReview implements Command {
 		
 		rs.deleteReview(vo);
 		
-		return "productForm.do?productId="+request.getParameter("productId");
+		return"productList.do";
+		//return "productForm.do?productId="+request.getParameter("productId");
 	
 	}
 

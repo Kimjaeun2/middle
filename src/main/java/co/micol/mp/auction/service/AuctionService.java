@@ -20,4 +20,6 @@ public interface AuctionService {
 
 	int listPage();
 
+	int auctionDelete(AuctionVO vo);
+
 }

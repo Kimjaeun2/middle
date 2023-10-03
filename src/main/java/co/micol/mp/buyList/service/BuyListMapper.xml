@@ -3,9 +3,7 @@
 <mapper namespace="co.micol.mp.buyList.service.BuyListMapper">
 
 <select id = "productBuyList" resultType="co.micol.mp.buyList.service.BuyListVO">
-<if test = "productId != null">
-SELECT MEMBER_ID, PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE,PRODUCT_IMG, BUY_DATE
-</if>
+SELECT *
 FROM PRODUCTBUYTABLE
 WHERE MEMBER_id = #{memberId}
 ORDER BY BUY_DATE

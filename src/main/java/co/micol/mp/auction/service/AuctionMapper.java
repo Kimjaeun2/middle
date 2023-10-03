@@ -20,5 +20,7 @@ public interface AuctionMapper {
 	int auctionPriceUpdate(AuctionVO vo);
 
 	int listPage();
+	
+	int auctionDelete(AuctionVO vo);
 
 }

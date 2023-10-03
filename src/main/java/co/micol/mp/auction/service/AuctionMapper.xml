@@ -27,7 +27,7 @@
 	
 	<insert id = "auctionInsert">
 	<selectKey keyProperty="auctionId" resultType="String" order="BEFORE">
-		SELECT 'a00' || AUCTION_SEQ.NEXTVAL FROM AUCTION
+		SELECT 'a00' || AUCTION_SEQ.NEXTVAL FROM dual
 	</selectKey>
 		INSERT INTO AUCTION 
 		VALUES( #{auctionId},
@@ -68,7 +68,6 @@
 				#{auctionPrice},
 				#{auctionDir},
 				SYSDATE 
-		
 			  )
 	</insert>
 
@@ -83,5 +82,11 @@
 		SELECT COUNT(*)
 		FROM auction
 	</select>
+	
+	<delete id="auctionDelete" parameterType="co.micol.mp.auction.service.AuctionVO">
+	DELETE	
+	FROM AUCTION
+	WHERE AUCTION_ID = #{auctionId}
+	</delete>
 
 </mapper>

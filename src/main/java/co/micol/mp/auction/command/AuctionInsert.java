@@ -42,7 +42,7 @@ public class AuctionInsert implements Command {
 					String pfile = multi.getFilesystemName("pfile");
 					String ofile = multi.getOriginalFileName("pfile");
 					System.out.println(pfile);
-					vo.setAuctionId(multi.getParameter("auctionId"));
+		
 					vo.setAuctionSellerId(String.valueOf(session.getAttribute("id")));
 					vo.setAuctionSeller(String.valueOf(session.getAttribute("name")));
 					vo.setAuctionName(multi.getParameter("auctionName"));
